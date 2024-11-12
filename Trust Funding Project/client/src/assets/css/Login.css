@@ -1,0 +1,96 @@
+/* LoginPage.css */
+
+.login-page {
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e7e9ec, #9013fe);
+    color: #fff!important;
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  
+  .logo-img {
+    height: 150px;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+  }
+  
+  .logo-img:hover {
+    transform: scale(1.05);
+  }
+  
+  .logo-text {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-top: 10px;
+  }
+  
+  .card-login {
+    background-color: #27293d;
+    border: none;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+  }
+  
+  .card-login:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-login h3 {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .input-field {
+    background-color: #343a40;
+    color: #fff!important;
+    border: 1px solid #4a90e2;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+  
+  .input-field:focus {
+    border-color: #9013fe;
+    color: #000000!important;
+    box-shadow: 0 0 5px rgba(144, 19, 254, 0.5);
+  }
+  
+  .btn-block {
+    width: 100%;
+  }
+  
+  .btn-login {
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .btn-login:hover {
+    background-color: #4a90e2;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .logo-img {
+      height: 120px;
+    }
+    .logo-text {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .logo-img {
+      height: 100px;
+    }
+    .logo-text {
+      font-size: 1.2rem;
+    }
+  }
+  
