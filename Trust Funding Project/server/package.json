@@ -7,6 +7,9 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.3"
   },
+  "engines": {
+  "node": "18.x"
+  },
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node server.js"
