@@ -114,7 +114,7 @@ const EditTrustee = () => {
             <NotificationAlert ref={notificationAlertRef} />
 
             <Row>
-                <Col md="8">
+                <Col md="11">
                     <Card>
                         <CardHeader>
                             <h5 className="title">Edit Trustee</h5>

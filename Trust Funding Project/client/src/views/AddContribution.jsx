@@ -107,7 +107,7 @@ export default function AddContribution() {
                 <NotificationAlert ref={notificationAlertRef} />
             </div>
             <Row>
-                <Col md="8">
+                <Col md="11">
                     <Card>
                         <CardHeader>
                             <h5 className="title">Add Contribution</h5>
