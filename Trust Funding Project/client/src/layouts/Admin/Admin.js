@@ -74,7 +74,7 @@ function Admin() {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "";
   };
 
   const handleLogout = () => {
