@@ -9,7 +9,7 @@ const contributionRoutes = require("./Routes/contributionRoutes.js");
 const User = require('./Models/SuperUserModel.js');
 const Trustee = require('./Models/TrusteeModel.js'); // Assuming you have a Trustee model
 const Donor = require('./Models/DonorModel.js');     // Assuming you have a Donor model
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
