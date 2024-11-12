@@ -59,7 +59,7 @@ export default function AddContribution() {
 
         try {
             // Send the contribution data to the backend
-            const response = await axios.post(`http://localhost:5000/contributions/add-contribution/${donorId}`, {
+            const response = await axios.post(`https://trust-site-frontend.onrender.com/contributions/add-contribution/${donorId}`, {
                 amount,
                 date,
                 collectedBy,

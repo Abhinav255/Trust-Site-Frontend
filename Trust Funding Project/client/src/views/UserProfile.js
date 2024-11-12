@@ -35,7 +35,7 @@ function UserProfile() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/${role}s`);
+        const response = await axios.get(`https://trust-site-frontend.onrender.com/${role}s`);
         console.log("API Response:", response.data);
 
         if (response.data.success && Array.isArray(response.data.data)) {
@@ -84,8 +84,8 @@ function UserProfile() {
     try {
       console.log("User data submitted:", userData);
       // Use userData.id to send the request
-      await axios.put(`http://localhost:5000/${role}s/${userData.id}`, userData);
-      console.log(`http://localhost:5000/${role}s/${userData.id}`);
+      await axios.put(`https://trust-site-frontend.onrender.com/${role}s/${userData.id}`, userData);
+      console.log(`https://trust-site-frontend.onrender.com/${role}s/${userData.id}`);
       notify("Profile updated successfully!", "success"); // Success notification
     } catch (error) {
       console.error("Error updating user data:", error);

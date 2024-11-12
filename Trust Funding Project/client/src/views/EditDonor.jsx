@@ -34,7 +34,7 @@ const EditDonor = () => {
     useEffect(() => {
         const fetchDonor = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/donors/${id}`);
+                const response = await axios.get(`https://trust-site-frontend.onrender.com/donors/${id}`);
                 console.log(response.data.data);
                 if (response.data && response.data.data) {
                     setFormData(response.data.data);
@@ -96,7 +96,7 @@ const EditDonor = () => {
         }
 
         try {
-            await axios.put(`http://localhost:5000/donors/${id}`, formData);
+            await axios.put(`https://trust-site-frontend.onrender.com/donors/${id}`, formData);
             notify("Donor updated successfully!", "success"); // Success notification
 
             // Add a slight delay (e.g., 2 seconds) to allow notification to show before navigation

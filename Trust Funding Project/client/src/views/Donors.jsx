@@ -28,7 +28,7 @@ const DonorTable = () => {
     useEffect(() => {
         const fetchDonors = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/donors');
+                const response = await axios.get('https://trust-site-frontend.onrender.com/donors');
                 setDonors(response.data.data || []);
             } catch (error) {
                 console.error('Error fetching donor data:', error);

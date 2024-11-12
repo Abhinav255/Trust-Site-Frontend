@@ -36,7 +36,7 @@ const EditTrustee = () => {
     useEffect(() => {
         const fetchTrustee = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/trustees/${id}`);
+                const response = await axios.get(`https://trust-site-frontend.onrender.com/trustees/${id}`);
                 setFormData(response.data.trustee);
                 console.log(response.data);
             } catch (error) {
@@ -94,7 +94,7 @@ const EditTrustee = () => {
 
         try {
             console.log("Sending update request...");
-            await axios.put(`http://localhost:5000/trustees/${id}`, formData);
+            await axios.put(`https://trust-site-frontend.onrender.com/trustees/${id}`, formData);
             notify("Trustee updated successfully!", "success"); 
             setTimeout(() => {
                 navigate('/admin/trustees');

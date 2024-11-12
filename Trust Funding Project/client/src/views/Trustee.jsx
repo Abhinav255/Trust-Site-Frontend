@@ -34,7 +34,7 @@ const TrusteeTable = () => {
     useEffect(() => {
         const fetchTrustees = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/trustees');
+                const response = await axios.get('https://trust-site-frontend.onrender.com/trustees');
                 const fetchedTrustees = response.data.data || [];
                 setTrustees(fetchedTrustees);
             } catch (error) {
@@ -69,7 +69,7 @@ const TrusteeTable = () => {
 
         try {
             for (let id of idsToDelete) {
-                await axios.delete(`http://localhost:5000/trustees/${id}`);
+                await axios.delete(`https://trust-site-frontend.onrender.com/trustees/${id}`);
             }
             const remainingTrustees = trustees.filter(trustee => !idsToDelete.includes(trustee._id));
             setTrustees(remainingTrustees);

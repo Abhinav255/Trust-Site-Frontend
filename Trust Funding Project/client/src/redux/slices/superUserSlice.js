@@ -13,7 +13,7 @@ export const registerSuperUser = createAsyncThunk(
   'superusers/registerSuperUser',
   async (superuserData, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://localhost:5000/superusers', superuserData);
+      const response = await axios.post('https://trust-site-frontend.onrender.com/superusers', superuserData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Registration failed");

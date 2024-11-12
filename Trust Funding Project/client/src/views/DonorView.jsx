@@ -21,7 +21,7 @@ const DonorView = () => {
     useEffect(() => {
         const fetchDonor = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/donors/${donorId}`);
+                const response = await axios.get(`https://trust-site-frontend.onrender.com/donors/${donorId}`);
                 if (response.data && response.data.data) {
                     setDonor(response.data.data);
                 } else {
@@ -36,7 +36,7 @@ const DonorView = () => {
 
         const fetchContributions = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/contributions/${donorId}`);
+                const response = await axios.get(`https://trust-site-frontend.onrender.com/contributions/${donorId}`);
                 setContributions(response.data || []);
             } catch (error) {
                 console.error('Error fetching contributions:', error);

@@ -63,8 +63,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const donorsResponse = await axios.get("http://localhost:5000/donors");
-        const contributionsResponse = await axios.get("http://localhost:5000/contributions");
+        const donorsResponse = await axios.get("https://trust-site-frontend.onrender.com/donors");
+        const contributionsResponse = await axios.get("https://trust-site-frontend.onrender.com/contributions");
 
         const donorData = donorsResponse.data.data || [];
         const contributionsData = contributionsResponse.data || [];

@@ -16,7 +16,7 @@ export const registerUser = createAsyncThunk(
     const { role, ...dataWithoutRole } = userData;
     const endpoint = role === 'trustee' ? '/trustees' : '/donors';
     try {
-      const response = await axios.post(`http://localhost:5000${endpoint}`, dataWithoutRole);
+      const response = await axios.post(`https://trust-site-frontend.onrender.com${endpoint}`, dataWithoutRole);
       return response.data; // Return the response data on success
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Registration failed");
