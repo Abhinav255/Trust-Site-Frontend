@@ -11,17 +11,17 @@ function Footer() {
       <Container fluid>
         <Nav>
           <NavItem>
-            <NavLink href="">
+            <NavLink>
               We Donate
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="">
+            <NavLink>
               About Us
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="">
+            <NavLink>
               Blog
             </NavLink>
           </NavItem>

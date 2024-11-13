@@ -14,7 +14,7 @@ export default function AboutUs() {
           <div className="col-details">
             <p>Lorem ipsum dolor sit amet consect adipisscin elit proin vel lectus ut eta esami vera dolor sit amet consect</p>
           </div>
-          <a href="#" className="btn btn-primary">
+          <a  className="btn btn-primary">
             Read more
           </a>
         </div>
@@ -29,7 +29,7 @@ export default function AboutUs() {
           <div className="col-details">
             <p>Lorem ipsum dolor sit amet consect adipisscin elit proin vel lectus ut eta esami vera dolor sit amet consect</p>
           </div>
-          <a href="#" className="btn btn-primary">
+          <a  className="btn btn-primary">
             Read more
           </a>
         </div>
@@ -44,7 +44,7 @@ export default function AboutUs() {
           <div className="col-details">
             <p>Lorem ipsum dolor sit amet consect adipisscin elit proin vel lectus ut eta esami vera dolor sit amet consect</p>
           </div>
-          <a href="#" className="btn btn-primary">
+          <a  className="btn btn-primary">
             Read more
           </a>
         </div>
@@ -59,7 +59,7 @@ export default function AboutUs() {
           <div className="col-details">
             <p>Lorem ipsum dolor sit amet consect adipisscin elit proin vel lectus ut eta esami vera dolor sit amet consect</p>
           </div>
-          <a href="#" className="btn btn-primary">
+          <a  className="btn btn-primary">
             Read more
           </a>
         </div>

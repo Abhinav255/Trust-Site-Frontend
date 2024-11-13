@@ -22,27 +22,27 @@ export default function Topbar() {
                 <div className="col-sm-6 col-xs-12 text-right">
                   <ul className="list-unstyled list-inline header-social">
                     <li>
-                      <a href="#">
+                      <a >
                         <i className="fa fa-facebook"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a >
                         <i className="fa fa-twitter"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a >
                         <i className="fa fa-google"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a >
                         <i className="fa fa-youtube"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a >
                         <i className="fa fa-pinterest-p"></i>
                       </a>
                     </li>

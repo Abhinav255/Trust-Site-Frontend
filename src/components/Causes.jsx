@@ -24,14 +24,14 @@ export default function Causes() {
             </div>
           </div>
           <h4 className="cause-title">
-            <a href="#">HUNGER AND POVERTY</a>
+            <a >HUNGER AND POVERTY</a>
           </h4>
           <div className="cause-details">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at eros rutrum turpis viverra
             elementum semper quis ex. Donec lorem nulla, aliquam quis neque vel, maximus lacinia urna.
           </div>
           <div className="btn-holder text-center">
-            <a href="#" className="btn btn-primary" data-toggle="modal" data-target="#donateModal">
+            <a  className="btn btn-primary" data-toggle="modal" data-target="#donateModal">
               DONATE NOW
             </a>
           </div>
@@ -54,14 +54,14 @@ export default function Causes() {
             </div>
           </div>
           <h4 className="cause-title">
-            <a href="#">EDUCATION AND TRAINING</a>
+            <a >EDUCATION AND TRAINING</a>
           </h4>
           <div className="cause-details">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at eros rutrum turpis viverra
             elementum semper quis ex. Donec lorem nulla, aliquam quis neque vel, maximus lacinia urna.
           </div>
           <div className="btn-holder text-center">
-            <a href="#" className="btn btn-primary" data-toggle="modal" data-target="#donateModal">
+            <a  className="btn btn-primary" data-toggle="modal" data-target="#donateModal">
               DONATE NOW
             </a>
           </div>
@@ -84,14 +84,14 @@ export default function Causes() {
             </div>
           </div>
           <h4 className="cause-title">
-            <a href="#">HUMAN RIGHTS</a>
+            <a >HUMAN RIGHTS</a>
           </h4>
           <div className="cause-details">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at eros rutrum turpis viverra
             elementum semper quis ex. Donec lorem nulla, aliquam quis neque vel, maximus lacinia urna.
           </div>
           <div className="btn-holder text-center">
-            <a href="#" className="btn btn-primary" data-toggle="modal" data-target="#donateModal">
+            <a  className="btn btn-primary" data-toggle="modal" data-target="#donateModal">
               DONATE NOW
             </a>
           </div>
@@ -114,14 +114,14 @@ export default function Causes() {
             </div>
           </div>
           <h4 className="cause-title">
-            <a href="#">ARTS AND CULTURE</a>
+            <a >ARTS AND CULTURE</a>
           </h4>
           <div className="cause-details">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at eros rutrum turpis viverra
             elementum semper quis ex. Donec lorem nulla, aliquam quis neque vel, maximus lacinia urna.
           </div>
           <div className="btn-holder text-center">
-            <a href="#" className="btn btn-primary" data-toggle="modal" data-target="#donateModal">
+            <a  className="btn btn-primary" data-toggle="modal" data-target="#donateModal">
               DONATE NOW
             </a>
           </div>

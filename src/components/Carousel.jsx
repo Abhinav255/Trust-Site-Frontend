@@ -30,7 +30,7 @@ export default function Carousel() {
                 Do not let them down
               </h4>
               <a
-                href="#"
+                
                 className="btn btn-lg btn-secondary hidden-xs bounceInUp animated slow"
                 data-toggle="modal"
                 data-target="#donateModal"
@@ -52,7 +52,7 @@ export default function Carousel() {
                 So let's do it!
               </h4>
               <a
-                href="#"
+                
                 className="btn btn-lg btn-secondary hidden-xs bounceInUp animated"
                 data-toggle="modal"
                 data-target="#donateModal"
@@ -74,7 +74,7 @@ export default function Carousel() {
                 You can make the difference!
               </h4>
               <a
-                href="#"
+                
                 className="btn btn-lg btn-secondary hidden-xs bounceInUp animated slow"
                 data-toggle="modal"
                 data-target="#donateModal"
