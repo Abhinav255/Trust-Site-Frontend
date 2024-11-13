@@ -14,6 +14,7 @@ import {
 import { useParams, useNavigate } from 'react-router-dom';
 import "react-notification-alert/dist/animate.css";
 import NotificationAlert from "react-notification-alert"; // Import NotificationAlert
+import Loader from 'components/Loader';
 
 const EditDonor = () => {
     const { id } = useParams(); 
@@ -110,7 +111,7 @@ const EditDonor = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>; 
+        return <Loader/>; 
     }
 
     return (

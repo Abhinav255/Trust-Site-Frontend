@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Footer from "components/Footer/Footer.js";
@@ -13,6 +13,8 @@ import Login from "views/Login";
 import EditDonor from "views/EditDonor";
 import DonorView from "views/DonorView";
 import AddContribution from "views/AddContribution";
+import Loader from "components/Loader";
+
 
 let ps;
 
@@ -22,18 +24,22 @@ function Admin() {
   const [sidebarOpened, setSidebarOpened] = useState(
     document.documentElement.className.indexOf("nav-open") !== -1
   );
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true); // Start loading
+    const timer = setTimeout(() => setLoading(false), 500); // Stop loading after 500ms
+    return () => clearTimeout(timer);
+  }, [location.pathname]); // Trigger loading on route change
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      // Redirect to login if not authenticated
       window.location.href = "/admin/login";
     }
 
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.classList.add("perfect-scrollbar-on");
-      ps = new PerfectScrollbar(mainPanelRef.current, {
-        suppressScrollX: true,
-      });
+      ps = new PerfectScrollbar(mainPanelRef.current, { suppressScrollX: true });
       document.querySelectorAll(".table-responsive").forEach((table) => {
         ps = new PerfectScrollbar(table);
       });
@@ -83,6 +89,10 @@ function Admin() {
     window.location.href = "/admin/login";
   };
 
+  if (loading) {
+    // return <Loader />; // Display loader while loading
+  }
+
   return (
     <BackgroundColorContext.Consumer>
       {({ color, changeColor }) => (
@@ -105,12 +115,12 @@ function Admin() {
             />
             <Routes>
               {getRoutes(routes)}
-              <Route path="/admin/dashboard" element={<Admin/>} />
-              <Route path="/" element={<Login/>} />
-              <Route path="/trustee/edit/:id" element={<EditTrustee/>} />
-              <Route path="/donor/edit/:id" element={<EditDonor/>} />
-              <Route path="/donor/donor-view/:id" element={<DonorView/>} />
-              <Route path="/donor/add-contribution/:id" element={<AddContribution/>} />
+              <Route path="/admin/dashboard" element={<Admin />} />
+              <Route path="/" element={<Login />} />
+              <Route path="/trustee/edit/:id" element={<EditTrustee />} />
+              <Route path="/donor/edit/:id" element={<EditDonor />} />
+              <Route path="/donor/donor-view/:id" element={<DonorView />} />
+              <Route path="/donor/add-contribution/:id" element={<AddContribution />} />
             </Routes>
             {location.pathname !== "/admin/maps" && <Footer fluid />}
           </div>

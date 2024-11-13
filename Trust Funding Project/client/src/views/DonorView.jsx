@@ -11,6 +11,7 @@ import {
     Button,
 } from "reactstrap";
 import { useParams, Link } from 'react-router-dom';
+import Loader from 'components/Loader';
 
 const DonorView = () => {
     const { id: donorId } = useParams();
@@ -50,7 +51,7 @@ const DonorView = () => {
     const totalAmount = contributions.reduce((total, contribution) => total + contribution.amount, 0);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loader/>;
     }
 
     return (

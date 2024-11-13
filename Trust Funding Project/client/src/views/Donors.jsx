@@ -13,6 +13,7 @@ import {
     Input,
 } from "reactstrap";
 import { Link, useNavigate } from 'react-router-dom';
+import Loader from 'components/Loader';
 
 const DonorTable = () => {
     const [donors, setDonors] = useState([]);
@@ -82,7 +83,7 @@ const DonorTable = () => {
     const totalPages = Math.ceil(filteredDonors.length / itemsPerPage);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loader/>;
     }
 
     return (

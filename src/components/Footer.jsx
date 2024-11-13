@@ -14,7 +14,7 @@ export default function Footer() {
               </h4>
               <div className="footer-content">
                 <p>
-                  <strong>Sadaka</strong> ipsum dolor sit amet, consectetur adipiscing elit. Ut at eros rutrum turpis
+                  <strong>We Donate</strong> ipsum dolor sit amet, consectetur adipiscing elit. Ut at eros rutrum turpis
                   viverra elementum semper quis ex. Donec lorem nulla, aliquam quis neque vel, maximus lacinia urna.
                 </p>
                 <p>
@@ -84,7 +84,7 @@ export default function Footer() {
     </div>
     <div className="footer-bottom">
       <div className="container text-right">
-        Sadaka &copy; copyrights 2015 - by{" "}
+        We Donate &copy; copyrights 2015 - by{" "}
         <a href="http://www.ouarmedia.com" target="_blank" rel="noopener noreferrer">
           Ouarmedia
         </a>

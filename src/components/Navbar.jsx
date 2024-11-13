@@ -45,7 +45,7 @@ export default function Navbar() {
           </button>
 
           <a className="navbar-brand" href="/">
-            <img src="assets/images/sadaka-logo.png" alt="" />
+            <img src="assets/images/we donate-logo.png" alt="" />
           </a>
         </div>
 

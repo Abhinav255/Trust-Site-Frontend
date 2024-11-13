@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  CardText,
   FormGroup,
   Form,
   Input,
@@ -13,7 +12,8 @@ import {
   Col,
 } from "reactstrap";
 import axios from "axios";
-import NotificationAlert from "react-notification-alert"; // Import NotificationAlert
+import NotificationAlert from "react-notification-alert";
+import Loader from "components/Loader"; // Import the Loader component
 
 function UserProfile() {
   const [userData, setUserData] = useState({
@@ -24,13 +24,14 @@ function UserProfile() {
     city: "",
     country: "",
     id: "",
-    password: "", // Added password field to userData state
+    password: "",
   });
+  const [loading, setLoading] = useState(true); // Loading state
 
   const email = localStorage.getItem("email");
   const role = localStorage.getItem("role")?.toLowerCase();
 
-  const notificationAlertRef = useRef(null); // Create ref for NotificationAlert
+  const notificationAlertRef = useRef(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -49,7 +50,7 @@ function UserProfile() {
               city: user.city,
               country: user.country,
               id: user._id,
-              password: user.password, // Added user password to state
+              password: user.password,
             });
           } else {
             console.log("No user found with the matching email.");
@@ -59,7 +60,9 @@ function UserProfile() {
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
-        notify("Error fetching user data", "danger"); // Error notification
+        notify("Error fetching user data", "danger");
+      } finally {
+        setLoading(false); // Set loading to false once data is fetched
       }
     };
 
@@ -83,19 +86,21 @@ function UserProfile() {
     event.preventDefault();
     try {
       console.log("User data submitted:", userData);
-      // Use userData.id to send the request
       await axios.put(`https://trust-site-frontend.onrender.com/${role}s/${userData.id}`, userData);
-      console.log(`https://trust-site-frontend.onrender.com/${role}s/${userData.id}`);
-      notify("Profile updated successfully!", "success"); // Success notification
+      notify("Profile updated successfully!", "success");
     } catch (error) {
       console.error("Error updating user data:", error);
-      notify("Error updating profile", "danger"); // Error notification
+      notify("Error updating profile", "danger");
     }
   };
 
+  if (loading) {
+    return <Loader />; // Display loader if data is still loading
+  }
+
   return (
     <div className="content">
-      <NotificationAlert ref={notificationAlertRef} /> {/* NotificationAlert component */}
+      <NotificationAlert ref={notificationAlertRef} />
 
       <Row>
         <Col md="8">
@@ -138,7 +143,7 @@ function UserProfile() {
                 <Row>
                   <Col md="6">
                     <FormGroup>
-                      <label htmlFor="exampleInputEmail1">Email address</label>
+                      <label>Email address</label>
                       <Input
                         value={userData.email}
                         placeholder="Email"
@@ -149,21 +154,6 @@ function UserProfile() {
                       />
                     </FormGroup>
                   </Col>
-                  {/* {role === "superuser" && (
-                    <Col md="6">
-                      <FormGroup>
-                        <label htmlFor="exampleInputEmail1">Password</label>
-                        <Input
-                          value={userData.password}
-                          placeholder="Password"
-                          type="password"
-                          onChange={(e) =>
-                            setUserData({ ...userData, password: e.target.value })
-                          }
-                        />
-                      </FormGroup>
-                    </Col>
-                  )} */}
                 </Row>
                 <Row>
                   <Col md="12">
@@ -206,7 +196,6 @@ function UserProfile() {
         <Col md="4">
           <Card className="card-user">
             <CardBody>
-              <CardText />
               <div className="author">
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
                   <img
@@ -216,9 +205,8 @@ function UserProfile() {
                   />
                   <h5 className="title">{userData.name}</h5>
                   <h5 className="title">
-  {role.replace(/\b\w/g, char => char.toUpperCase())}
-</h5>
-
+                    {role.replace(/\b\w/g, (char) => char.toUpperCase())}
+                  </h5>
                 </a>
               </div>
             </CardBody>

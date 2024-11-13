@@ -18,6 +18,7 @@ import {
 } from "reactstrap";
 import { Link } from 'react-router-dom';
 import NotificationAlert from "react-notification-alert";
+import Loader from 'components/Loader';
 
 const TrusteeTable = () => {
     const [trustees, setTrustees] = useState([]);
@@ -124,7 +125,7 @@ const TrusteeTable = () => {
     const role = localStorage.getItem('role');
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loader/>;
     }
 
     return (

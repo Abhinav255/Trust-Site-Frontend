@@ -12,6 +12,7 @@ import {
   ButtonGroup,
   Button,
 } from "reactstrap";
+import Loader from "components/Loader";
 
 let chartOptions = {
   maintainAspectRatio: false,
@@ -140,7 +141,7 @@ function Dashboard() {
   }).reduce((sum, c) => sum + c.amount, 0);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
 
   return (

@@ -14,7 +14,7 @@ export default function Topbar() {
                     </li>
                     <li>
                       <i className="fa fa-envelope"></i>
-                      <a href="mailto:contact@sadaka.org">contact@sadaka.org</a>
+                      <a href="mailto:contact@we donate.org">contact@we donate.org</a>
                     </li>
                   </ul>
                 </div>
