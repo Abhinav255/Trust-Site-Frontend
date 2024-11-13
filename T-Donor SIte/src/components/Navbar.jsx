@@ -44,7 +44,7 @@ export default function Navbar() {
             <span className="icon-bar"></span>
           </button>
 
-          <a className="navbar-brand" href="/">
+          <a className="navbar-brand" >
             <img src="assets/images/we donate-logo.png" alt="" />
           </a>
         </div>
@@ -52,7 +52,7 @@ export default function Navbar() {
         <div id="navbar" className="navbar-collapse collapse pull-right">
           <ul className="nav navbar-nav">
             <li>
-              <a className="is-active" href="/">
+              <a className="is-active" >
                 HOME
               </a>
             </li>
