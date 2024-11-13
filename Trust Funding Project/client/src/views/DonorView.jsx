@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardTitle,
-    Table,
-    Row,
-    Col,
-    Button,
-} from "reactstrap";
+import { Card, CardHeader, CardBody, CardTitle, Table, Row, Col, Button } from "reactstrap";
 import { useParams, Link } from 'react-router-dom';
 import Loader from 'components/Loader';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable'; // Required for auto-generating tables
 
 const DonorView = () => {
     const { id: donorId } = useParams();
@@ -50,8 +43,33 @@ const DonorView = () => {
 
     const totalAmount = contributions.reduce((total, contribution) => total + contribution.amount, 0);
 
+    const downloadPDF = () => {
+        const doc = new jsPDF();
+
+        // Title
+        doc.setFontSize(16);
+        doc.text(`${donor.name}'s Contributions`, 14, 20);
+
+        // Table
+        const tableColumn = ["Date", "Collected By", "Amount"];
+        const tableRows = contributions.map(contribution => [
+            new Date(contribution.date).toLocaleDateString("en-GB"),
+            contribution.collectedBy,
+            contribution.amount
+        ]);
+
+        // Add the table to the PDF
+        doc.autoTable(tableColumn, tableRows, { startY: 30 });
+
+        // Add total row
+        doc.text(`Total Amount: ${totalAmount}`, 14, doc.lastAutoTable.finalY + 10);
+
+        // Save the PDF
+        doc.save(`${donor.name}_Contributions.pdf`);
+    };
+
     if (loading) {
-        return <Loader/>;
+        return <Loader />;
     }
 
     return (
@@ -67,6 +85,9 @@ const DonorView = () => {
                                         Add Contribution
                                     </Button>
                                 </Link>
+                                <Button color="primary" className="float-right mr-2" onClick={downloadPDF}>
+                                    Download PDF
+                                </Button>
                             </CardHeader>
                             <CardBody>
                                 <Table responsive>
