@@ -6,16 +6,14 @@ import {
     CardBody,
     CardTitle,
     Table,
-    Row,
-    Col,
-    Button,
+    Col
 } from "reactstrap";
-import { Link } from 'react-router-dom';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Topbar from '../components/Topbar';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+
 import { FaCalendarAlt, FaUser, FaDollarSign } from 'react-icons/fa';
 
 const MyDonations = () => {
