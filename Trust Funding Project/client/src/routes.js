@@ -2,6 +2,7 @@
 import Dashboard from "views/Dashboard.js";
 import DonorTable from "views/Donors";
 import EditTrustee from "views/EditTrustees";
+import Enquiries from "views/Enquiries";
 import Icons from "views/Icons.js";
 import Map from "views/Map.js";
 import Notifications from "views/Notifications.js";
@@ -59,14 +60,14 @@ var routes = [
     component: <UserProfile />,
     layout: "/admin",
   },
-  // {
-  //   path: "/tables",
-  //   name: "Table List",
+  {
+    path: "/enquiries",
+    name: "Enquiries",
 
-  //   icon: "tim-icons icon-puzzle-10",
-  //   component: <TableList />,
-  //   layout: "/admin",
-  // },
+    icon: "tim-icons icon-puzzle-10",
+    component: <Enquiries />,
+    layout: "/admin",
+  },
   // {
   //   path: "/trustee/edit/:id", 
   //   name: "Edit Trustee",
