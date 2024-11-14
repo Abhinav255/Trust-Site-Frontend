@@ -5,10 +5,12 @@ const bodyParser = require('body-parser');
 const donorRoutes = require("./Routes/donorRoutes");
 const trusteeRoutes = require("./Routes/trusteeRoutes");
 const userRoutes = require("./Routes/superUserRoutes.js");
+const contactRoutes = require('./Routes/contactRoutes');
 const contributionRoutes = require("./Routes/contributionRoutes.js");
 const User = require('./Models/SuperUserModel.js');
 const Trustee = require('./Models/TrusteeModel.js'); // Assuming you have a Trustee model
-const Donor = require('./Models/DonorModel.js');     // Assuming you have a Donor model
+const Donor = require('./Models/DonorModel.js');   
+  // Assuming you have a Donor model
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -35,6 +37,8 @@ app.use('/trustees', trusteeRoutes);
 app.use('/donors', donorRoutes); 
 app.use('/superusers', userRoutes);
 app.use("/contributions", contributionRoutes);
+app.use('/contact', contactRoutes);
+
 
 // Login route
 // Login route
