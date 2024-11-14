@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
     Card,
@@ -14,23 +14,20 @@ import {
     ModalBody,
     Spinner
 } from "reactstrap";
-import NotificationAlert from "react-notification-alert";
 
 const Enquiries = () => {
     const [enquiries, setEnquiries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedEnquiry, setSelectedEnquiry] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const notificationAlertRef = useRef(null);
 
     useEffect(() => {
         const fetchEnquiries = async () => {
             try {
-                const response = await axios.get('https://trust-site-frontend.onrender.com/');
+                const response = await axios.get('https://trust-site-frontend.onrender.com/contact');
                 setEnquiries(response.data);
             } catch (error) {
                 console.error('Error fetching enquiries:', error);
-                notify("Failed to load enquiries.", "danger");
             } finally {
                 setLoading(false);
             }
@@ -41,17 +38,6 @@ const Enquiries = () => {
     const toggleModal = (enquiry = null) => {
         setSelectedEnquiry(enquiry);
         setIsModalOpen(!isModalOpen);
-    };
-
-    const notify = (message, type) => {
-        const options = {
-            place: "tc",
-            message: <div>{message}</div>,
-            type: type,
-            icon: "tim-icons icon-bell-55",
-            autoDismiss: 5,
-        };
-        notificationAlertRef.current.notificationAlert(options);
     };
 
     if (loading) {
@@ -67,7 +53,6 @@ const Enquiries = () => {
 
     return (
         <div className="content">
-            <NotificationAlert ref={notificationAlertRef} />
             <Row>
                 <Col md="12">
                     <Card>
