@@ -22,8 +22,8 @@ const DonorTable = () => {
     const [itemsPerPage] = useState(5);
     const [sortBy, setSortBy] = useState('name');
     const [sortOrder, setSortOrder] = useState('asc');
-    const [selectedDonors, setSelectedDonors] = useState(new Set());
     const [searchQuery, setSearchQuery] = useState(""); // Search query state
+    const [showPasswords, setShowPasswords] = useState({}); // To toggle password visibility
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,6 +31,7 @@ const DonorTable = () => {
             try {
                 const response = await axios.get('https://trust-site-frontend.onrender.com/donors');
                 setDonors(response.data.data || []);
+                
             } catch (error) {
                 console.error('Error fetching donor data:', error);
             } finally {
@@ -58,6 +59,42 @@ const DonorTable = () => {
         setSortBy(criteria);
         setSortOrder(newSortOrder);
     };
+  
+    
+    const togglePasswordVisibility = async (donorId) => {
+        if (!showPasswords[donorId]) {
+          try {
+            const adminToken = localStorage.getItem('token');  // Ensure the token is stored in localStorage
+      
+            if (!adminToken) {
+              console.error('Admin token is missing');
+              return;
+            }
+      
+            const response = await axios.post(`https://your-api-endpoint/donors/show-password/${donorId}`, {}, {
+              headers: {
+                'Authorization': `Bearer ${adminToken}`,  // Send token in the Authorization header
+              },
+            });
+      
+            setShowPasswords(prev => ({
+              ...prev,
+              [donorId]: response.data.password,
+            }));
+          } catch (error) {
+            console.error('Error fetching password:', error);
+          }
+        } else {
+          setShowPasswords(prev => ({
+            ...prev,
+            [donorId]: null,
+          }));
+        }
+      };
+      
+    
+    
+    
 
     const sortedDonors = [...filteredDonors].sort((a, b) => {
         if (sortBy === 'name') {
@@ -81,11 +118,15 @@ const DonorTable = () => {
     const currentDonors = sortedDonors.slice(indexOfFirstDonor, indexOfLastDonor);
 
     const totalPages = Math.ceil(filteredDonors.length / itemsPerPage);
+    const totalItems = filteredDonors.length;
+    const startItem = indexOfFirstDonor + 1;
+    const endItem = Math.min(indexOfLastDonor, totalItems);
 
     if (loading) {
-        return <Loader/>;
+        return <Loader />;
     }
 
+   
     return (
         <div className="content">
             <Row>
@@ -119,6 +160,7 @@ const DonorTable = () => {
                                         <th onClick={() => handleSort('city')} style={{ cursor: 'pointer' }}>
                                             City {sortBy === 'city' ? (sortOrder === 'asc' ? '↑' : '↓') : ''}
                                         </th>
+                                        <th>Password</th>
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Address</th>
@@ -133,23 +175,42 @@ const DonorTable = () => {
                                         <tr key={donor._id} onDoubleClick={() => navigate(`/admin/donor/donor-view/${donor._id}`)}>
                                             <td>{donor.name}</td>
                                             <td>{donor.city}</td>
+                                            <td>
+                                                {showPasswords[donor._id] || '••••••••'}
+                                                <Button
+                                                    color="link"
+                                                    size="sm"
+                                                    onClick={() => togglePasswordVisibility(donor._id)}
+                                                >
+                                                    {showPasswords[donor._id] ? 'Hide' : 'Show'}
+                                                </Button>
+                                            </td>
                                             <td>{donor.email}</td>
                                             <td>{donor.phone}</td>
                                             <td>{donor.address}</td>
                                             <td>{new Date(donor.updatedAt).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "2-digit" })}</td>
                                             <td>
                                                 <Link to={`/admin/donor/edit/${donor._id}`}>
-                                                    <Button color="primary">Edit</Button>
+                                                    <Button color="primary" size='sm'>Edit</Button>
+                                                </Link>
+                                                <Link to={`/admin/donor/donor-view/${donor._id}`}>
+                                                    <Button color="secondary" style={{ marginLeft: "5px" }} size='sm'>View</Button>
                                                 </Link>
                                             </td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </Table>
+                            <div className="pagination-info">
+                                <p>
+                                    Showing {startItem}-{endItem} out of {totalItems} entries
+                                </p>
+                            </div>
                             <div className="pagination">
                                 {[...Array(totalPages)].map((_, index) => (
                                     <Button
                                         key={index}
+                                        size='sm'
                                         color="secondary"
                                         onClick={() => setCurrentPage(index + 1)}
                                         active={currentPage === index + 1}
@@ -167,3 +228,5 @@ const DonorTable = () => {
 };
 
 export default DonorTable;
+
+

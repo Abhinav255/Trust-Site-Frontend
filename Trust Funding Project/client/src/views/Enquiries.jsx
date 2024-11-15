@@ -74,9 +74,13 @@ const Enquiries = () => {
                                         <tr key={enquiry._id}>
                                             <td>{enquiry.name}</td>
                                             <td>{enquiry.email}</td>
-                                            <td>{enquiry.message.slice(0, 30)}...</td>
                                             <td>
-                                                <Button color="info" onClick={() => toggleModal(enquiry)}>
+                                                {enquiry.message.length > 30
+                                                    ? `${enquiry.message.slice(0, 30)}...`
+                                                    : enquiry.message}
+                                            </td>
+                                            <td>
+                                                <Button color="info" size="sm" onClick={() => toggleModal(enquiry)}>
                                                     View
                                                 </Button>
                                             </td>

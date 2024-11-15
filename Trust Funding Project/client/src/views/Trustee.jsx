@@ -196,7 +196,7 @@ const TrusteeTable = () => {
                                             {role === 'SuperUser' && (
                                                 <td>
                                                     <Link to={`/admin/trustee/edit/${trustee._id}`} className='text-white'>
-                                                        <Button color="primary">
+                                                        <Button size="sm" color="primary">
                                                             Edit
                                                         </Button>
                                                     </Link>
@@ -210,6 +210,7 @@ const TrusteeTable = () => {
                                 {[...Array(totalPages)].map((_, index) => (
                                     <Button
                                         key={index}
+                                        size='sm'
                                         color="secondary"
                                         onClick={() => setCurrentPage(index + 1)}
                                         active={currentPage === index + 1}

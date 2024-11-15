@@ -24,12 +24,6 @@ const DonorSchema = new mongoose.Schema({
   city: {
     type: String,
   },
-  // contributionAmount: {
-  //   type: Number,
-  // },
-  // collector: {
-  //   type: String,
-  // },
   role: {
     type: String,
     default: "donor", // Set default role

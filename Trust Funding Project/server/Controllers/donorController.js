@@ -14,7 +14,20 @@ exports.getDonors = async (req, res) => {
   }
 };
 
-// Get a single donor
+// Refactored getDonorPassword function
+exports.getDonorPassword = async (req, res) => {
+  try {
+    const donor = await Donor.findById(req.params.id);
+    if (!donor) {
+      return res.status(404).json({ success: false, message: "Donor not found" });
+    }
+    res.status(200).json({ success: true, data: donor });
+    console.log(donor.password)
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
 exports.getDonorById = async (req, res) => {
   try {
     const donor = await Donor.findById(req.params.id);

@@ -141,6 +141,7 @@ function UserProfile() {
                   )}
                 </Row>
                 <Row>
+
                   <Col md="6">
                     <FormGroup>
                       <label>Email address</label>
@@ -154,6 +155,21 @@ function UserProfile() {
                       />
                     </FormGroup>
                   </Col>
+                  {/* <Row> */}
+                  <Col className="pr-md-1" md="6">
+                    <FormGroup>
+                      <label>City</label>
+                      <Input
+                        value={userData.city}
+                        placeholder="City"
+                        type="text"
+                        onChange={(e) =>
+                          setUserData({ ...userData, city: e.target.value })
+                        }
+                      />
+                    </FormGroup>
+                  </Col>
+                {/* </Row> */}
                 </Row>
                 <Row>
                   <Col md="12">
@@ -170,22 +186,8 @@ function UserProfile() {
                     </FormGroup>
                   </Col>
                 </Row>
-                <Row>
-                  <Col className="pr-md-1" md="6">
-                    <FormGroup>
-                      <label>City</label>
-                      <Input
-                        value={userData.city}
-                        placeholder="City"
-                        type="text"
-                        onChange={(e) =>
-                          setUserData({ ...userData, city: e.target.value })
-                        }
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Button className="btn-fill" color="primary" type="submit">
+               
+                <Button className="btn-fill" size="md" color="primary" type="submit">
                   Save
                 </Button>
               </Form>
