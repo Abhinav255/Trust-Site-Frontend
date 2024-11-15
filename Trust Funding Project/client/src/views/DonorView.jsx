@@ -18,12 +18,14 @@ const DonorView = () => {
                 const response = await axios.get(`https://trust-site-frontend.onrender.com/donors/${donorId}`);
                 if (response.data && response.data.data) {
                     setDonor(response.data.data);
+                    console.log(response.data.data)
                 } else {
                     console.error('No donor data found:', response.data);
                 }
             } catch (error) {
                 console.error('Error fetching donor data:', error);
             } finally {
+
                 setLoading(false);
             }
         };
@@ -50,6 +52,13 @@ const DonorView = () => {
         doc.setFontSize(16);
         doc.text(`${donor.name}'s Contributions`, 14, 20);
 
+        // Donor Info (City, Email, Address)
+        doc.setFontSize(12);
+        doc.text(`City: ${donor.city || 'N/A'}`, 14, 30);
+        doc.text(`Email: ${donor.email || 'N/A'}`, 14, 40);
+        doc.text(`Address: ${donor.address || 'N/A'}`, 14, 50);
+        doc.text(`Phone: ${donor.phone || 'N/A'}`, 14, 60);
+
         // Table
         const tableColumn = ["Date", "Collected By", "Amount"];
         const tableRows = contributions.map(contribution => [
@@ -59,7 +68,7 @@ const DonorView = () => {
         ]);
 
         // Add the table to the PDF
-        doc.autoTable(tableColumn, tableRows, { startY: 30 });
+        doc.autoTable(tableColumn, tableRows, { startY: 70 });
 
         // Add total row
         doc.text(`Total Amount: ${totalAmount}`, 14, doc.lastAutoTable.finalY + 10);

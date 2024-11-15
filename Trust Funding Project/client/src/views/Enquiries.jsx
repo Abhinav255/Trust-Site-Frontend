@@ -99,9 +99,9 @@ const Enquiries = () => {
                     Enquiry from {selectedEnquiry?.name}
                 </ModalHeader>
                 <ModalBody>
-                    <p><strong>Email:</strong> {selectedEnquiry?.email}</p>
-                    <p><strong>Message:</strong></p>
-                    <p>{selectedEnquiry?.message}</p>
+                    <p><span style={{color:'rgba(128, 72, 165, 0.8)', }}>Email:</span><b> {selectedEnquiry?.email}</b></p>
+                    <p><span style={{color:'rgba(128, 72, 165, 0.8)'}}>Message:</span></p>
+                    <b>  <p>{selectedEnquiry?.message}</p></b>
                 </ModalBody>
             </Modal>
         </div>

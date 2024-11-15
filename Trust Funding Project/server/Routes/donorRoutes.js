@@ -3,7 +3,7 @@ const router = express.Router();
 const donorController = require("../Controllers/donorController");
 
 // Define routes for donors
-console.log(donorController); 
+// console.log(donorController); 
 router.get("/", donorController.getDonors);
 router.get("/:id", donorController.getDonorById);
 router.post("/", donorController.createDonor);

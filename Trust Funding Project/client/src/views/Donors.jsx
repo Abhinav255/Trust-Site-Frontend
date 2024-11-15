@@ -71,7 +71,7 @@ const DonorTable = () => {
               return;
             }
       
-            const response = await axios.post(`https://your-api-endpoint/donors/show-password/${donorId}`, {}, {
+            const response = await axios.post(`http://localhost:5000/donors/show-password/${donorId}`, {}, {
               headers: {
                 'Authorization': `Bearer ${adminToken}`,  // Send token in the Authorization header
               },
@@ -160,7 +160,7 @@ const DonorTable = () => {
                                         <th onClick={() => handleSort('city')} style={{ cursor: 'pointer' }}>
                                             City {sortBy === 'city' ? (sortOrder === 'asc' ? '↑' : '↓') : ''}
                                         </th>
-                                        <th>Password</th>
+                                        {/* <th>Password</th> */}
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Address</th>
@@ -175,7 +175,7 @@ const DonorTable = () => {
                                         <tr key={donor._id} onDoubleClick={() => navigate(`/admin/donor/donor-view/${donor._id}`)}>
                                             <td>{donor.name}</td>
                                             <td>{donor.city}</td>
-                                            <td>
+                                            {/* <td>
                                                 {showPasswords[donor._id] || '••••••••'}
                                                 <Button
                                                     color="link"
@@ -183,8 +183,8 @@ const DonorTable = () => {
                                                     onClick={() => togglePasswordVisibility(donor._id)}
                                                 >
                                                     {showPasswords[donor._id] ? 'Hide' : 'Show'}
-                                                </Button>
-                                            </td>
+                                                </Button> 
+                                            </td>*/}
                                             <td>{donor.email}</td>
                                             <td>{donor.phone}</td>
                                             <td>{donor.address}</td>

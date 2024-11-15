@@ -16,15 +16,30 @@ exports.getDonors = async (req, res) => {
 
 // Refactored getDonorPassword function
 exports.getDonorPassword = async (req, res) => {
+  const token = req.headers['authorization']?.split(' ')[1];  // Extract token from the Authorization header
+  
+  if (!token) {
+    return res.status(400).json({ message: "JWT must be provided" });
+  }
+
   try {
-    const donor = await Donor.findById(req.params.id);
-    if (!donor) {
-      return res.status(404).json({ success: false, message: "Donor not found" });
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);  // Decode the JWT token using the secret
+
+    // Ensure the user is an admin
+    if (decoded.role !== 'SuperUser' && decoded.role !== 'Admin') {
+      return res.status(403).json({ message: "Unauthorized" });
     }
-    res.status(200).json({ success: true, data: donor });
-    console.log(donor.password)
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+
+    const donor = await Donor.findById(req.params.donorId);
+    if (!donor) {
+      return res.status(404).json({ message: "Donor not found" });
+    }
+
+    // Return the password (mask or avoid exposing in production)
+    res.json({ password: donor.password });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
