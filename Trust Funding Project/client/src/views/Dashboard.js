@@ -352,32 +352,47 @@ function Dashboard() {
       <Row>
  
 
-
-  <Col xs="12" md="6">
-    <Card>
-      <CardHeader>
-        <CardTitle tag="h4">Top Donors Table</CardTitle>
-      </CardHeader>
-      <CardBody>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Amount Contributed</th>
+      <Col xs="12" md="6">
+  <Card>
+    <CardHeader>
+      <CardTitle tag="h4">All Donors</CardTitle>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Search Donors"
+        onChange={(e) => {
+          const query = e.target.value.toLowerCase();
+          setDonors((prevDonors) =>
+            prevDonors.filter((donor) =>
+              donor.name.toLowerCase().includes(query)
+            )
+          );
+        }}
+      />
+    </CardHeader>
+    <CardBody style={{ maxHeight: "400px", overflowY: "auto" }}>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>City</th>
+          </tr>
+        </thead>
+        <tbody>
+          {donors.map((donor, index) => (
+            <tr key={index}>
+              <td>{donor.name}</td>
+              <td>{donor.email}</td>
+              <td>{donor.city}</td>
             </tr>
-          </thead>
-          <tbody>
-            {topDonors.map(([donor, amount], index) => (
-              <tr key={index}>
-                <td>{donor}</td>
-                <td>{amount}₹</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </CardBody>
-    </Card>
-  </Col>
+          ))}
+        </tbody>
+      </table>
+    </CardBody>
+  </Card>
+</Col>
+
   
 
         <Col lg="6" md="12">
