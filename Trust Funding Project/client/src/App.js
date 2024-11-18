@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import AdminLayout from "layouts/Admin/Admin.js";
 import Login from 'views/Login';
 import Loader from 'components/Loader';
+import ForgotPassword from 'views/ForgotPassword';
 
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/" element={token ? <Navigate to="/admin/dashboard" replace /> : <Login />} />
             <Route path="/admin/*" element={token ? <AdminLayout /> : <Navigate to="/" replace />} />
             <Route path="/admin/login" element={<Navigate to="/" replace />} />
+            <Route path="/forgot-password" element={<ForgotPassword/>} />
             {/* <Route path="/we-donate" element={<DonorView />} />  */}
           </Routes>
         </BrowserRouter>

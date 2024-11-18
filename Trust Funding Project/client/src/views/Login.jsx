@@ -12,7 +12,7 @@ import {
 import axios from "axios";
 import logo_img from "../assets/img/we-care-logo.png";
 import "../assets/css/Login.css"; 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Import Link
 import NotificationAlert from "react-notification-alert";
 
 function Login() {
@@ -103,6 +103,11 @@ function Login() {
                     required
                   />
                 </FormGroup>
+                <div className="text-center mb-3">
+                  <Link to="/forgot-password" className="forgot-password-link">
+                    Forgot Password?
+                  </Link>
+                </div>
                 <Button color="primary" className="btn-block btn-login" type="submit">
                   Log In
                 </Button>

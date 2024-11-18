@@ -350,32 +350,8 @@ function Dashboard() {
         </Col>
       </Row>
       <Row>
-  {/* <Col xs="12" md="6">
-    <Card className="card-chart">
-      <CardHeader>
-        <CardTitle tag="h4">Top Donors</CardTitle>
-      </CardHeader>
-      <CardBody>
-        <Bar
-          data={{
-            labels: topDonorNames,
-            datasets: [{
-              label: "Top Donors",
-              backgroundColor: "rgba(29,140,248,0.6)",
-              data: topDonorAmounts,
-            }],
-          }}
-          options={{
-            scales: {
-              xAxes: [{
-                barThickness: 10,
-              }],
-            },
-          }}
-        />
-      </CardBody>
-    </Card>
-  </Col> */}
+ 
+
 
   <Col xs="12" md="6">
     <Card>

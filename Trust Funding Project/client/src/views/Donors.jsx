@@ -71,7 +71,7 @@ const DonorTable = () => {
               return;
             }
       
-            const response = await axios.post(`http://localhost:5000/donors/show-password/${donorId}`, {}, {
+            const response = await axios.post(`https://trust-site-frontend.onrender.com/donors/show-password/${donorId}`, {}, {
               headers: {
                 'Authorization': `Bearer ${adminToken}`,  // Send token in the Authorization header
               },

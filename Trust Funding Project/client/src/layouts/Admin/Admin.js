@@ -121,6 +121,7 @@ function Admin() {
               <Route path="/donor/edit/:id" element={<EditDonor />} />
               <Route path="/donor/donor-view/:id" element={<DonorView />} />
               <Route path="/donor/add-contribution/:id" element={<AddContribution />} />
+              
             </Routes>
             {location.pathname !== "/admin/maps" && <Footer fluid />}
           </div>

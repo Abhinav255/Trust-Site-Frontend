@@ -80,6 +80,39 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.post('/forgot-password', async (req, res) => {
+    const { email, newPassword } = req.body;
+
+    try {
+        // Search for the user in all collections
+        let user = await User.findOne({ email });
+
+        if (!user) {
+            user = await Trustee.findOne({ email });
+        }
+
+        if (!user) {
+            user = await Donor.findOne({ email });
+        }
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found with the provided email." });
+        }
+
+        // Hash the new password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+        // Update the user's password
+        user.password = hashedPassword;
+        await user.save();
+
+        res.status(200).json({ message: "Password has been updated successfully." });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "An error occurred while updating the password." });
+    }
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
