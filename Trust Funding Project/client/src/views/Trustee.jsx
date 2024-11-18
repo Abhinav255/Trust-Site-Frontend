@@ -16,9 +16,10 @@ import {
     ModalBody,
     ModalFooter
 } from "reactstrap";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NotificationAlert from "react-notification-alert";
 import Loader from 'components/Loader';
+
 
 const TrusteeTable = () => {
     const [trustees, setTrustees] = useState([]);
@@ -31,7 +32,7 @@ const TrusteeTable = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const notificationAlertRef = useRef(null); // Ref for NotificationAlert
-
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchTrustees = async () => {
             try {
@@ -122,15 +123,16 @@ const TrusteeTable = () => {
     const currentTrustees = sortedTrustees.slice(indexOfFirstTrustee, indexOfLastTrustee);
 
     const totalPages = Math.ceil(filteredTrustees.length / itemsPerPage);
-    const role = localStorage.getItem('role');
+    const totalItems = filteredTrustees.length;
+    const startItem = indexOfFirstTrustee + 1;
+    const endItem = Math.min(indexOfLastTrustee, totalItems);
 
     if (loading) {
-        return <Loader/>;
+        return <Loader />;
     }
 
     return (
         <div className="content">
-            <NotificationAlert ref={notificationAlertRef} />
             <Row>
                 <Col md="12">
                     <Card>
@@ -140,19 +142,12 @@ const TrusteeTable = () => {
                                     <CardTitle tag="h4">Trustee Information</CardTitle>
                                 </Col>
                                 <Col md="6" className="text-right">
-                                    {role === 'SuperUser' && selectedTrustees.size > 0 && (
-                                        <FormGroup inline>
-                                            <Button color="danger" style={{ padding: "10px" }} onClick={toggleModal}>
-                                                <i className="fa fa-trash" style={{ color: "white" }}></i>
-                                            </Button>
-                                        </FormGroup>
-                                    )}
                                     <FormGroup inline>
                                         <Input
                                             type="text"
-                                            placeholder="Search by Name, City, Email, or Phone"
                                             value={searchQuery}
                                             onChange={(e) => setSearchQuery(e.target.value)}
+                                            placeholder="Search by Name, City, or Email"
                                             style={{ maxWidth: "300px", display: "inline-block" }}
                                         />
                                     </FormGroup>
@@ -163,7 +158,6 @@ const TrusteeTable = () => {
                             <Table className="tablesorter" responsive>
                                 <thead className="text-primary">
                                     <tr>
-                                        {role === 'SuperUser' && <th>Select</th>}
                                         <th onClick={() => handleSort('name')} style={{ cursor: 'pointer' }}>
                                             Name {sortBy === 'name' ? (sortOrder === 'asc' ? '↑' : '↓') : ''}
                                         </th>
@@ -172,40 +166,33 @@ const TrusteeTable = () => {
                                         </th>
                                         <th>Email</th>
                                         <th>Phone Number</th>
-                                        <th>Address</th>
-                                        {role === 'SuperUser' && <th>Actions</th>}
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {currentTrustees.map((trustee) => (
-                                        <tr key={trustee._id}>
-                                            {role === 'SuperUser' && (
-                                                <td>
-                                                    <Input
-                                                        type="checkbox"
-                                                        style={{ transform: "translate(30px,-10px)" }}
-                                                        onChange={() => toggleSelectTrustee(trustee._id)}
-                                                    />
-                                                </td>
-                                            )}
+                                        <tr key={trustee._id} onDoubleClick={() => navigate(`/admin/trustee/trustee-view/${trustee._id}`)}>
                                             <td>{trustee.name}</td>
                                             <td>{trustee.city}</td>
                                             <td>{trustee.email}</td>
                                             <td>{trustee.phone}</td>
-                                            <td>{trustee.address}</td>
-                                            {role === 'SuperUser' && (
-                                                <td>
-                                                    <Link to={`/admin/trustee/edit/${trustee._id}`} className='text-white'>
-                                                        <Button size="sm" color="primary">
-                                                            Edit
-                                                        </Button>
-                                                    </Link>
-                                                </td>
-                                            )}
+                                            <td>
+                                                <Link to={`/admin/trustee/edit/${trustee._id}`}>
+                                                    <Button color="primary" size='sm'>Edit</Button>
+                                                </Link>
+                                                <Link to={`/admin/trustee/trustee-view/${trustee._id}`}>
+                                                    <Button color="secondary" style={{ marginLeft: "5px" }} size='sm'>View</Button>
+                                                </Link>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </Table>
+                            <div className="pagination-info">
+                                <p>
+                                    Showing {startItem}-{endItem} out of {totalItems} entries
+                                </p>
+                            </div>
                             <div className="pagination">
                                 {[...Array(totalPages)].map((_, index) => (
                                     <Button
@@ -223,18 +210,6 @@ const TrusteeTable = () => {
                     </Card>
                 </Col>
             </Row>
-
-            {/* Confirmation Modal */}
-            <Modal isOpen={isModalOpen} toggle={toggleModal}>
-                <ModalHeader toggle={toggleModal}>Confirm Deletion</ModalHeader>
-                <ModalBody>
-                    Are you sure you want to delete the selected trustees?
-                </ModalBody>
-                <ModalFooter className='p-3'>
-                    <Button color="danger" onClick={handleDelete}>Confirm</Button>
-                    <Button color="secondary" onClick={toggleModal}>Cancel</Button>
-                </ModalFooter>
-            </Modal>
         </div>
     );
 };
